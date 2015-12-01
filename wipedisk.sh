@@ -1,10 +1,10 @@
 #!/bin/bash
+
 ####################################################################################################
 #
 # Copyright (c) 2013, JAMF Software, LLC.  All rights reserved.
 #
-#       This script was written by the JAMF Software Profesional Services Team for the 
-#		St. James Parish Imaging Project - May 2013
+#       This script was written by the JAMF Software Profesional Services Team 
 #
 #       THIS SOFTWARE IS PROVIDED BY JAMF SOFTWARE, LLC "AS IS" AND ANY
 #       EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -29,45 +29,41 @@
 # ABOUT THIS PROGRAM
 #
 # NAME
-#	jamfHelperByPolicy.sh
+#	wipedisk.sh
 #
 # SYNOPSIS - How to use
-#	Run via a policy to populate JAMF Helper with values to present messages to the user.
-#
-# DESCRIPTION
 #	
-# 	Populate script parameters to match the variables below. 
-#   Pass in values into these parameters during a policy.
+# Run this script as part of a JAMF Imaging Config
+# 
+# DESCRIPTION
+# 	
+# This script wipes the first internal hard disk (disk0) in such a way to destroy all 
+# FileVault and Boot Camp data, allowing Casper Imaging to then prep for a full deployment.
 #
+#
+# USAGE
+# 
+# Set the priority to "before", as well as choose the checkbox for "Erase target drive" 
+# when running Casper Imaging
+#
+# WARNING
+# 
+# Before running this script, double check what the /dev/disk* path will be.
+# Example - The internal hard drive shows up differently if NetBooted versus over Target Mode Imaging.
+# 
 ####################################################################################################
 #
 # HISTORY
 #
 #	Version: 1.0
-#
-#	- Created by Douglas Worley, Professional Services Engineer, JAMF Software on May 10, 2013
+#	- Created by Douglas Worley, Professional Services Engineer, JAMF Software on August 21, 2014
 #
 ####################################################################################################
-# The recursively named JAMF Helper help file is accessible at:
-# /Library/Application\ Support/JAMF/bin/jamfHelper.app/Contents/MacOS/jamfHelper -help
-
-windowType=""		#	[hud | utility | fs]
-windowPosition=""	#	[ul | ll | ur | lr]
-title=""			#	"string"
-heading=""			#	"string"
-description=""		#	"string"
-icon=""				#	path
-iconSize=""			#	pixels
-timeout=""			#	seconds
 
 
-[ "$4" != "" ] && [ "$windowType" == "" ] && windowType=$4
-[ "$5" != "" ] && [ "$windowPosition" == "" ] && windowPosition=$5
-[ "$6" != "" ] && [ "$title" == "" ] && title=$6
-[ "$7" != "" ] && [ "$heading" == "" ] && heading=$7
-[ "$8" != "" ] && [ "$description" == "" ] && description=$8
-[ "$9" != "" ] && [ "$icon" == "" ] && icon=$9
-[ "$10" != "" ] && [ "$iconSize" == "" ] && iconSize=$10
-[ "$11" != "" ] && [ "$timeout" == "" ] && timeout=$11
-
-"/Library/Application Support/JAMF/bin/jamfHelper.app/Contents/MacOS/jamfhelper" -windowType "$windowType" -windowPosition "$windowPosition" -title "$title" -heading "$heading" -description "$description"  -icon "$icon" -iconSize "$iconSize" -button1 "Close" -defaultButton 1 -countdown "$timeout" -timeout "$timeout"
+diskutil zerodisk /dev/disk0 &
+sleep 20
+killall diskutil
+sleep 5
+diskutil partitionDisk /dev/disk0 1 GPTFormat JournaledHFS+ "Macintosh HD" 100%
+sleep 5
