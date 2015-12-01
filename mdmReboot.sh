@@ -37,7 +37,7 @@
 # DESCRIPTION
 #	
 # 	Verifies that APNS is working, and that we see a specific Configuration Profile matching a string to look for. 
-#   Run a `profiles -P -v` command to find the string you want to look for.
+#   Run a `profiles -P -v` command to find the string you want to look for. This example searches for "loginwindow"
 #   Best practices are to search for something that is scoped to All Computers.
 #
 #
@@ -51,13 +51,13 @@
 #
 ####################################################################################################
 
-configProfileString=""	# something like FileVault
+configProfileString="loginwindow"	# something like loginwindow
 	if [ "$configProfileString" == "" ]; then
 		echo "The variable configProfileString is blank. Please edit the script and enter a value to search for."
 		exit 1
 	fi
 
-# set up a loop until APNS pushes a loginwindow configuration profile
+# set up a loop until APNS pushes a specific configuration profile
 configProfileStatus=`profiles -P -v | grep "$configProfileString"`
 	if [ "$configProfileStatus" != "" ] 
 		then echo "YES, Ready!"
@@ -70,5 +70,5 @@ configProfileStatus=`profiles -P -v | grep "$configProfileString"`
 			echo "$configProfileString Configuration Profile exists! Continuing..." 
 	fi
 
-# Once the above loop completes and the loginwindow configuration profile exists, reboot to display the loginwindow banner
+# Once the above loop completes and the configuration profile exists, reboot to display the loginwindow banner
 echo "rebooting gracefully and submitting logs to JSS" && jamf reboot -background -immediately
