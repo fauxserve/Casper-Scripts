@@ -49,7 +49,7 @@
 
 clear
 
-theRubbish="/Users/dougworley/Desktop/rubbish"
+theRubbish=""
 [[ "$4" != "" ]] && [[ "$theRubbish" == "" ]] && "$theRubbish"="$4"
 
 CurrentUser=`/bin/ls -l /dev/console | /usr/bin/awk '{ print $3 }'`
