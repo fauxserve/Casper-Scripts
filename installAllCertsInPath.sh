@@ -46,7 +46,7 @@ function myLogger (){
 # 	Do not use \, use quotes to handle spaces in the path.
 # 	Make sure to include the / at the end.
 # 	Example: "/var/db/my certificates/"
-	certPath="/Users/dougworley/Desktop/IPG certs/"	
+	certPath="/var/db/my certificates/"	
 # 2) keyChain
 # 	This is the full path to the Keychain file for the script to import into:
 #	Example: "/Library/Keychains/System.keychain"
