@@ -4,8 +4,7 @@
 #
 # Copyright (c) 2013, JAMF Software, LLC.  All rights reserved.
 #
-#       This script was written by the JAMF Software Profesional Services Team for the 
-#		 JumpStart
+#       This script was written by the JAMF Software Profesional Services Team
 #
 #       THIS SOFTWARE IS PROVIDED BY JAMF SOFTWARE, LLC "AS IS" AND ANY
 #       EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
