@@ -48,6 +48,7 @@
 ####################################################################################################
 
 
+
 CurrentUser=$(ls -l /dev/console | awk '{print $3}'); echo "$CurrentUser"
 
 su \- "${CurrentUser}" -c osascript -e <<EOT
