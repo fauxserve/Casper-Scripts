@@ -36,6 +36,9 @@ clear
 #
 # Run this script by hand, do not run in a policy.
 #
+# This script is meant for an admin operator to run by hand and move a user home folder 
+# from a local (Deleted) state to a domain user.
+#
 # Verify that the "companyDomainName" variable populates properly with whatever your domain name is.
 # If the script below does not properly read your domain name, you can hard code it.
 # 					 
