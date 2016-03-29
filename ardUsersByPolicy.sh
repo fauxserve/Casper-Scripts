@@ -20,7 +20,7 @@
 #####################################################################################################
 #
 # SUPPORT FOR THIS PROGRAM
-#
+# 
 #       This program is distributed "as is" by JAMF Software, Professional Services Team. For more
 #       information or support for this script, please contact your JAMF Software Account Manager.
 #
