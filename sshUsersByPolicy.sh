@@ -69,7 +69,7 @@ fi
 
 # Add the required minimum users and group to the ssh access group in Directory Services. These are hard coded by use of the "hardCodedUser" and "hardCodedGroup" values
 # dseditgroup -o edit -n /Local/Default -a "hardCodedUser" -t user com.apple.access_ssh
-# dseditgroup -o edit -n /Local/Default -a admin -t "hardCodedGroup" com.apple.access_ssh
+# dseditgroup -o edit -n /Local/Default -a "hardCodedGroup" -t group com.apple.access_ssh
 
 # Pass in additional users and groups via populated parameters from a policy
 dseditgroup -o edit -n /Local/Default -a $sshUser -t user com.apple.access_ssh
