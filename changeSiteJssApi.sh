@@ -1,7 +1,7 @@
 #!/bin/bash 
 #
-clear
-set -x
+# clear
+# set -x
 ####################################################################################################
 #
 # Copyright (c) 2013, JAMF Software, LLC.  All rights reserved.
