@@ -6,8 +6,7 @@
 #
 # Copyright (c) 2013, JAMF Software, LLC.  All rights reserved.
 #
-#       This script was written by the JAMF Software Profesional Services Team for the 
-#		 JumpStart
+#       This script was written by the JAMF Software Profesional Services Team
 #
 #       THIS SOFTWARE IS PROVIDED BY JAMF SOFTWARE, LLC "AS IS" AND ANY
 #       EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -46,6 +45,7 @@
 #	Version: 1.0
 #
 #	- Created by Douglas Worley, Senior Professional Services Engineer, JAMF Software on April 7 2016
+#		Inspired by a script by Lucas Vance, Strategic Technical Account Manager, JAMF Software.
 #
 ####################################################################################################
 # Enter full URL and credentials to the JSS
