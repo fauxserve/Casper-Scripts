@@ -52,20 +52,17 @@
 ####################################################################################################
 clear
 
-boundAdNameLong=`dsconfigad -show | awk '/Computer Account/ { print $4 }'`
-boundAdNameShort=`echo "${boundAdNameLong%?}"`
-
-echo "	This Mac's bound name in AD is:		$boundAdNameShort"
+boundAdName=`dsconfigad -show | awk '/Computer Account/ { print $4 }'`
+echo "	This Mac's bound name in AD is:		${boundAdName%?}"
 
 localHostname=`hostname -s`
-
 echo "	This Mac's local hostname is:		$localHostname"
 
-if [[ $boundAdNameShort == $localHostname ]]; then
+if [[ ${boundAdName%?} == $localHostname ]]; then
 echo "	The names match, all is fine"
-echo "<result>$localHostname</result>"
+echo "<result>Match - $localHostname</result>"
 else
 echo " ALERT Then names do not match, please remediate	"
-echo "<result>Mismatch - AD: $boundAdNameShort / Local: $localHostname</result>"
+echo "<result>Mismatch - AD: ${boundAdName%?} / Local: $localHostname</result>"
 fi
 exit $?
