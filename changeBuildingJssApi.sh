@@ -37,6 +37,7 @@
 #	
 # Run in a policy or by hand to update a Mac's record in the JSS. 
 # All three parameters/variables must be populated in order to work.
+# The BUILDING variable must match exactly how it is spelled in the JSS.
 # 
 ####################################################################################################
 #
