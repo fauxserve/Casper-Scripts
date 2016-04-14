@@ -1,21 +1,3 @@
-
-clear
-
-theGroups=$(/usr/bin/dscl localhost -read /Local/Default/Groups/com.apple.access_ssh NestedGroups | cut -c 17-)
-
-
-function readTheGroups
-{
-while test $# -gt 0
-do
-	dscl /Search -list /Groups GeneratedUID | grep $1
-	shift
-done
-}
-
-echo "<result>`readTheGroups $theGroups`</result>"
-
-
 #!/bin/bash 
 #
 ####################################################################################################
@@ -66,3 +48,20 @@ echo "<result>`readTheGroups $theGroups`</result>"
 #	- Created by Douglas Worley, Senior Professional Services Engineer, JAMF Software on April 7 2016
 #
 ####################################################################################################
+
+
+clear
+
+theGroups=$(/usr/bin/dscl localhost -read /Local/Default/Groups/com.apple.access_ssh NestedGroups | cut -c 17-)
+
+
+function readTheGroups
+{
+while test $# -gt 0
+do
+	dscl /Search -list /Groups GeneratedUID | grep $1
+	shift
+done
+}
+
+echo "<result>`readTheGroups $theGroups`</result>"
