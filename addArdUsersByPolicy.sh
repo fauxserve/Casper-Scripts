@@ -29,7 +29,7 @@
 # ABOUT THIS PROGRAM
 #
 # NAME
-#	ardPolicy.sh
+#	addArdUsersByPolicy.sh
 # 
 ####################################################################################################
 #
@@ -46,6 +46,7 @@ users=""
 
 # CHECK TO SEE IF A VALUE WAS PASSED IN PARAMETER 4 AND, IF SO, ASSIGN TO "USERNAME"
 # Multiple users can be specified in a single string, separated by a comma. Example: "user1,user2"
+# You should include the JAMF Management account here at very least for Casper Remote to work properly.
 
 if [ "$4" != "" ] && [ "$users" == "" ];then
     users=$4
