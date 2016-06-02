@@ -41,7 +41,7 @@ reset
 #	This CSV file will be passed to the "inputFile" parameter in the script.
 #
 # SYNOPSIS - with parameters
-#	massUpdateComputerEaValues.sh <apiUser> <apiPass> <eaID> <eaName> <JSSURL> <inputFile> 
+#	massUpdateComputerEaValues.sh <apiUser> <apiPass> <eaID> <eaName> <jssUrl> <inputFile> 
 #	
 #	The script will prompt for any of these parameters that are not hard coded into the file.
 #
@@ -69,7 +69,7 @@ reset
 #	(You can discover this by reading a full Computer record in the API page)
 	eaName=""
 # JSS URL to PUT based on Serial Number. This could be "id" or "name"
-	JSSURL=""
+	jssUrl=""
 # CSV File to that contains serials and EA values
 	inputFile=""
 # Temporary XML file to be used 
@@ -81,11 +81,11 @@ reset
 #
 ####################################################################################################
 
-# Output results of network tests
-echo "         JAMF Software - Professional Services"
-echo "Mass Update Computer Extension Attributes" && echo ""
 
+echo "JAMF Software - Professional Services"
+echo "Mass Update - Computer Extension Attributes" && echo ""
 
+# Prompt operator to enter the required values, if they are not hard coded above
 if [[ $apiUser == "" ]] 
 		then
 		echo "Enter API user account:"
@@ -113,23 +113,23 @@ echo ""
 if [[ $eaName == "" ]] 
 		then
 		echo "Enter name for the Extension Attribute:"
-		echo "	Status"
+		echo "	example: Status"
 		read eaName
 fi
 echo ""
 
-if [[ $JSSURL == "" ]] 
+if [[ $jssUrl == "" ]] 
 		then
 		echo "Enter full JSS URL, without trailing slash:"
-		echo "	https://jss.company.com:8443"
-		read JSSURL
+		echo "	example: https://jss.company.com:8443"
+		read jssUrl
 fi
 echo ""
 
 if [[ $inputFile == "" ]] 
 		then
 		echo "Enter path to CSV file:"
-		echo "	/Users/admin/Desktop/examplecsv.csv"
+		echo "	example: /Users/admin/Desktop/examplecsv.csv"
 		echo "	(you can drag the file into the shell)"
 		read inputFile
 fi
@@ -152,18 +152,18 @@ do
 	
 	##Set unique variables to read the next line in the .csv##
 	serialNumber=`cat "${inputFile}" | awk -F, 'FNR == '$[$index]' {print $1}'`
-    eaValue=`cat "${inputFile}" | awk -F, 'FNR == '$[$index]' {print $2}'`
+	eaValue=`cat "${inputFile}" | awk -F, 'FNR == '$[$index]' {print $2}'`
 
 echo ""
 echo ""
 echo "Current iteration through file: $index"
 echo "Serial Number is: $serialNumber"
 echo "EA Value is: $eaValue"
-fullApiPath="$JSSURL/JSSResource/computers/serialnumber/$serialNumber"
+fullApiPath="$jssUrl/JSSResource/computers/serialnumber/$serialNumber"
 echo "Full API Path is: $fullApiPath"
 echo ""
 
-
+# Create the temporary XML file with the data for each Computer
 cat <<EndXML > $tmpXmlFile
 <?xml version="1.0" encoding="UTF-8"?>
 <computer>
@@ -178,7 +178,7 @@ cat <<EndXML > $tmpXmlFile
 </computer>
 EndXML
 
-
+# Error checking in stdout
 echo "XML file is:"
 cat "$tmpXmlFile"
 echo ""
@@ -192,7 +192,7 @@ rm $tmpXmlFile
 done
 echo ""
 echo "***** Done updating Computer Extension Attributes *****"
-echo "***** Please check and verify in the JSS: $JSSURL *****"
+echo "***** Please check and verify in the JSS: $jssUrl *****"
 echo ""
 
 
