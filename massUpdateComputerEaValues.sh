@@ -53,7 +53,7 @@ reset
 # HISTORY
 #
 #	Version: 1.0
-#	- Inspired by Justin Ingebretson and , JAMF Software
+#	- Inspired by Justin Ingebretson and Trey Howell, JAMF Software
 #	- Created by Douglas Worley Senior PSE, JAMF Software on June 1, 2016
 #
 ####################################################################################################
