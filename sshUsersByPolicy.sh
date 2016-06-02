@@ -72,5 +72,5 @@ fi
 # dseditgroup -o edit -n /Local/Default -a "hardCodedGroup" -t group com.apple.access_ssh
 
 # Pass in additional users and groups via populated parameters from a policy
-dseditgroup -o edit -n /Local/Default -a $sshUser -t user com.apple.access_ssh
-dseditgroup -o edit -n /Local/Default -a $sshGroup -t group com.apple.access_ssh
+dseditgroup -o edit -n /Local/Default -a "$sshUser" -t user com.apple.access_ssh
+dseditgroup -o edit -n /Local/Default -a "$sshGroup" -t group com.apple.access_ssh
