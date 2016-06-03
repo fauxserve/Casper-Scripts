@@ -58,7 +58,7 @@ clear
 #
 #   Version: 1.0
 #
-#   - Created by Douglas Worley, Professional Services Engineer, JAMF Software on November 30, 2015
+#   - Created by Douglas Worley, Professional Services Engineer, JAMF Software on 2 June, 2016
 #
 ####################################################################################################
 
