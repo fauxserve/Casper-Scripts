@@ -58,7 +58,7 @@ clear
 #
 #   Version: 1.0
 #
-#   - Created by Douglas Worley, Professional Services Engineer, JAMF Software on 2 June, 2016
+#   - Created by Douglas Worley, Professional Services Engineer, JAMF Software on November 30, 2015
 #
 ####################################################################################################
 
@@ -93,7 +93,17 @@ for eachApp in ${allOfTheApps[*]}
 		if [ -e "${eachApp}" ]; then
 			echo " 	- Approving application: ${eachApp}"
 			spctl --add --label "$gatekeeperLabel" "${eachApp}"
+				if [ "$?" == "0" ]; then #error checking
+				     echo "		Set Gatekeeper to trust ${eachApp}"
+				else
+				     echo "ALERT - There was a problem with setting GateKeeper to trust ${eachApp}"
+				fi
 			chown root:wheel "${eachApp}"
+				if [ "$?" == "0" ]; then #error checking
+				     echo "		Set ownership for ${eachApp}"
+				else
+				     echo "ALERT - There was a problem with setting ownership for ${eachApp}"
+				fi
 		fi
 	done
 
