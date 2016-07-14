@@ -51,7 +51,7 @@
 #
 ####################################################################################################
  
-silentLogout="N" #yes/YES/y/Y/no/NO/n/N
+silentLogoutYN="N" #yes/YES/y/Y/no/NO/n/N
 
 # Override whatever the hardcoded selection for $silentLogout with whatever comes from the JSS
 [ "$4" != "" ] && silentLogout=$4
@@ -84,7 +84,7 @@ EOT
 
 ### Determine which path to take, and run the appropriate function ###
 
-case ${silentLogout} in
+case ${silentLogoutYN} in
 	y* ) SilentLogout;;
 	Y* ) SilentLogout;;
 	n* ) PromptUserLogout;;
