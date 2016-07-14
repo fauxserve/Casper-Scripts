@@ -29,12 +29,17 @@
 # ABOUT THIS PROGRAM
 #
 # NAME
-#	silentUserLogout.sh
+#	logUserOut.sh
 #
-# Usage - Run this script in a policy to have Mac OS X log the current user out while bypassing the 
-# "Are you sure you want to quit all applications and log out now" window.
+# Usage - Run this script in a policy to have Mac OS X log the current user out. 
+#
+# By default the script will prompt the user to log out, but if the JAMF Policy parameter passes in a YES, 
+# then perform a silent logout.
 # 
-# This is helpful in combination with FileVault 2 policies activated "At Next Logout"
+# This is helpful in combination with FileVault 2 policies activated "At Next Logout".
+#
+# If you have your FV2 policy run via Self Service, then the default "NO" setting is best.
+# If you have your FV2 policy running silently, then either hardcode the variable below or use a policy parameter
 #
 ####################################################################################################
 #
@@ -45,11 +50,44 @@
 #	- Created by Douglas Worley, Senior Professional Services Engineer, JAMF Software on February 20 2016
 #
 ####################################################################################################
+ 
+silentLogout="N" #yes/YES/y/Y/no/NO/n/N
 
+# Override whatever the hardcoded selection for $silentLogout with whatever comes from the JSS
+[ "$4" != "" ] && silentLogout=$4
 
+#################
 
 CurrentUser=$(ls -l /dev/console | awk '{print $3}'); echo "$CurrentUser"
 
+
+## Functions ###
+
+function myLogger (){
+    tee >(logger) <<< $1
+}
+
+function SilentLogout () {
+myLogger " Peforming Silent Logout"
 su \- "${CurrentUser}" -c osascript -e <<EOT
 tell application "System Events" to keystroke "q" using {option down, shift down, command down}
 EOT
+}
+
+function PromptUserLogout () {
+myLogger " Prompting User to Log Out"
+su \- "${CurrentUser}" -c osascript -e <<EOT
+tell application "System Events" to keystroke "q" using {shift down, command down}
+EOT
+}
+
+
+### Determine which path to take, and run the appropriate function ###
+
+case ${silentLogout} in
+	y* ) SilentLogout;;
+	Y* ) SilentLogout;;
+	n* ) PromptUserLogout;;
+	N* ) PromptUserLogout;;
+  * ) echo "Please enter a choice for whether to log out silently";;
+esac
