@@ -85,9 +85,7 @@ EOT
 ### Determine which path to take, and run the appropriate function ###
 
 case ${silentLogoutYN} in
-	y* ) SilentLogout;;
-	Y* ) SilentLogout;;
-	n* ) PromptUserLogout;;
-	N* ) PromptUserLogout;;
+	y* | Y* ) SilentLogout;;
+	n* | N* ) PromptUserLogout;;
   * ) echo "Please enter a choice for whether to log out silently";;
 esac
