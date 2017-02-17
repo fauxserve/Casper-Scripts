@@ -53,8 +53,8 @@
  
 silentLogoutYN="N" #yes/YES/y/Y/no/NO/n/N
 
-# Override whatever the hardcoded selection for $silentLogout with whatever comes from the JSS
-[ "$4" != "" ] && silentLogout=$4
+# Override whatever the hardcoded selection for $silentLogoutYN with whatever comes from the JSS
+[ "$4" != "" ] && silentLogoutYN=$4
 
 #################
 
