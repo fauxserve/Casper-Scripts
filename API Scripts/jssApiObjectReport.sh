@@ -29,6 +29,19 @@ reset
 #
 ####################################################################################################
 
+########## Purpose ##########
+##
+#
+# This script generates a report via the API to get the count and names of each type of object.
+# This is useful for comparing two various instances when doing a migration.
+#
+# This script requires the name of a JSS object as displayed in the JSS API documentation page:
+# 	For example: https://jamf.company.com:8443/api/
+#
+##
+########## Usage ##########
+
+
 ########## Usage ##########
 ##
 #
