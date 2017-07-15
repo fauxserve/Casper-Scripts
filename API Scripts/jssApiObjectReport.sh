@@ -29,7 +29,7 @@ reset
 #
 ####################################################################################################
 
-########## Purpose ##########
+########## Description ##########
 ##
 #
 # This script generates a report via the API to get the count and names of each type of object.
@@ -39,7 +39,7 @@ reset
 # 	For example: https://jamf.company.com:8443/api/
 #
 ##
-########## Usage ##########
+########## End Description ##########
 
 
 ########## Usage ##########
