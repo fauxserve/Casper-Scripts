@@ -45,7 +45,7 @@ reset
 ########## Usage ##########
 ##
 #
-# Description: This script has three options for providing the required variables:
+# This script has three options for providing the required variables:
 # 	1: Pass the variables in as shell parameters in line
 # 	2: Be prompted for the variables during shell execution
 #	3: Hard code variables into this script file
